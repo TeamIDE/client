@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import Project from './Project';
-import style from './style';
+
 
 class ProjectList extends Component {
+
 	render() {
-		let projectNodes = this.props.data.map(project => {
-			return (<Project title={ project.title } id={ project.id } description={ project.description } />);
+		var self = this;
+		let projectNodes = [];
+		
+		Object.keys(self.props.data).forEach(key => {
+			let project = self.props.data[key];
+			projectNodes.push(<Project title={ project.title } description={ project.description } key={ project.id } />);
 		});
 
 		return (
-			<div style= { style.projectsList }>
+			<div>
 				{ projectNodes }
 			</div>
-		);
-
+		)
 	}
 }
 

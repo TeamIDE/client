@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import style from './style';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 
 class Project extends Component {
 
 	render() {
 		return (
-			<div style= { style.project }>
-				<h3>{ this.props.title } <strong>{ this.props.id }</strong></h3>
-				<span>{ this.props.description } </span>
-			</div>
+			<Card>
+				<CardHeader 
+					title={ this.props.title }
+					subtitle={ this.props.description }
+					actAsExpander={ true }
+					showExpandableButton={ true } />
+				<CardText expandable={ true }>
+					This is some sample text for now. Please replace with related files!
+				</CardText>
+			</Card>
 		)
 	}
 }
