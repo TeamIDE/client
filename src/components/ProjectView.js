@@ -5,6 +5,7 @@ import ProjectList from './ProjectList';
 import Paper from 'material-ui/Paper';
 import ContentLoader from 'react-content-loader'
 
+var Constants = require('utils/Constants');
 const paperStyle = {
 	textAlign: 'center',
 	display: 'block',
@@ -33,7 +34,7 @@ const addStyle = {
 class ProjectView extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { data : [], url : props.url };
+		this.state = { projects : null };
 		this.loadProjectData = this.loadProjectData.bind(this);
 		this.loadData = this.loadData.bind(this);
 		this.postData = this.postData.bind(this);
@@ -48,9 +49,9 @@ class ProjectView extends Component {
 	}
 
 	loadProjectData() {
-		axios.get(this.state.url + 'projects/')
+		axios.get(Constants.projectUrl)
 		.then(res => {
-			this.setState({data : res.data });
+			this.setState({projects : res.data });
 		})
 		.catch(err => {
 			console.log(err);
@@ -69,8 +70,8 @@ class ProjectView extends Component {
 
 
 	getProjectList() {
-		if(this.state.data) {
-			return <ProjectList data={ this.state.data } />;
+		if(this.state.projects) {
+			return <ProjectList data={ this.state.projects } />;
 		}
 		return <ContentLoader type='list' />;
 	}
@@ -81,8 +82,6 @@ class ProjectView extends Component {
 			<div style={ wrapperStyle }>
 				<div className="row">
 					<h1 style={ headerStyle }>Projects</h1>
-					<span style={ addStyle }>
-					<ProjectForm style={ addStyle } url={ this.props.url } submit={ this.postData } />
 					</span>
 				</div>
 				<div className="row">

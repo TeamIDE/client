@@ -1,0 +1,10 @@
+@import '../../node_modules/codemirror/lib/codemirror.css';
+@import '../../node_modules/codemirror/theme/material.css';
+
+.code-editor {
+    height: 100vh;
+}
+
+.CodeMirror {
+	height: 100vh;
+}
