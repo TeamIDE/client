@@ -34,16 +34,7 @@ class ProjectForm extends Component {
 
 	handleSubmit(e) {
 		this.setState({ open : false });
-
-		var self = this;
-		axios.post(this.state.url, {title : this.state.title, description : this.state.description })
-		.then(res => {
-			console.log('received client side response');
-			self.props.reloadData;
-		})
-		.catch(err => {
-			console.error(err);
-		});
+		this.props.submit({title : this.state.title, description : this.state.description });
 	}
 
 

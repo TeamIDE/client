@@ -11,11 +11,10 @@ const paperStyle = {
 };
 
 const wrapperStyle = {
-	width: '50%',
+	width: '20%',
 	height: 'auto',
-	marginLeft: 'auto',
-	marginRight: 'auto',
-	textAlign: 'center'
+	textAlign: 'left',
+	float: 'left'
 };
 
 const headerStyle = {
@@ -35,19 +34,39 @@ class ProjectView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { data : [], url : props.url };
-		this.loadData.bind(this);
-	}
-
-	loadData() {
-		axios.get(this.state.url)
-		.then(res => {
-			this.setState({data : res.data });
-		})
+		this.loadProjectData = this.loadProjectData.bind(this);
+		this.loadData = this.loadData.bind(this);
+		this.postData = this.postData.bind(this);
 	}
 
 	componentDidMount() {
 		this.loadData();
 	}
+
+	loadData() {
+		this.loadProjectData();
+	}
+
+	loadProjectData() {
+		axios.get(this.state.url + 'projects/')
+		.then(res => {
+			this.setState({data : res.data });
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	}
+
+	postData(data) {
+		axios.post(this.state.url, data)
+		.then(res => {
+			this.loadData();
+		})
+		.catch(err => {
+			console.error(err);
+		});
+	}
+
 
 	getProjectList() {
 		if(this.state.data) {
@@ -63,7 +82,7 @@ class ProjectView extends Component {
 				<div className="row">
 					<h1 style={ headerStyle }>Projects</h1>
 					<span style={ addStyle }>
-					<ProjectForm style={ addStyle } url={ this.props.url } reloadData={ this.loadData }/>
+					<ProjectForm style={ addStyle } url={ this.props.url } submit={ this.postData } />
 					</span>
 				</div>
 				<div className="row">
