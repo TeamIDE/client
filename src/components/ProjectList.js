@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ProjectListItem from './ProjectListItem';
-import style from './ProjectList.css';
 
 class ProjectList extends Component {
 

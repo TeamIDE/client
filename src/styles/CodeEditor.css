@@ -5,6 +5,10 @@
     height: 100vh;
 }
 
+.code-runner {
+    float: right;
+}
+
 .CodeMirror {
-	height: 100vh;
+	height: 93vh;
 }

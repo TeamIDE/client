@@ -82,7 +82,6 @@ class ProjectView extends Component {
 			<div style={ wrapperStyle }>
 				<div className="row">
 					<h1 style={ headerStyle }>Projects</h1>
-					</span>
 				</div>
 				<div className="row">
 					<Paper zDepth={1} style={ paperStyle }>
